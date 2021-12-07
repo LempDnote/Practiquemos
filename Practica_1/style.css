@@ -1,0 +1,27 @@
+body{
+    background: #9BA557;
+}
+
+.box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.matriz{
+    margin: 15px;
+    border-right: 1px solid black ;
+    border-left: 1px solid black;
+}
+
+table{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+
+}
+
+table tr{
+    margin: 5px;
+    padding: 5px;
+}

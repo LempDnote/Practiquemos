@@ -1,0 +1,37 @@
+[
+    {
+        "nombre":"Miguel",
+        "edad":11,
+        "carnet":"2018",
+        "grado":1,
+        "genero":"Masculino"
+    },
+    {
+        "nombre":"Alejandra",
+        "edad":12,
+        "carnet":"2019",
+        "grado":2,
+        "genero":"Femenino"
+    },
+    {
+        "nombre":"Rocio",
+        "edad":13,
+        "carnet":"2016",
+        "grado":5,
+        "genero":"Femenino"
+    },
+    {
+        "nombre":"Angela",
+        "edad":14,
+        "carnet":"2015",
+        "grado":3,
+        "genero":"Femenino"
+    },
+    {
+        "nombre":"Angel",
+        "edad":12,
+        "carnet":"2021",
+        "grado":4,
+        "genero":"Masculino"
+    }
+]

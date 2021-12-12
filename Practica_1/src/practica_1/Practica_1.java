@@ -229,13 +229,10 @@ public class Practica_1 {
         int[][] matriz_A = new int[3][2];
         matriz_A[0][0] = 1;
         matriz_A[0][1] = 2;
-        
         matriz_A[1][0] = 4;
         matriz_A[1][1] = 5;
-        
         matriz_A[2][0] = 7;
         matriz_A[2][1] = 8;
-        
         
         int[][] matriz_B = new int[3][2];
         matriz_B[0][0] = 1;
@@ -244,12 +241,11 @@ public class Practica_1 {
         matriz_B[1][1] = 4;
         matriz_B[2][0] = 5;
         matriz_B[2][1] = 6;
-
+        
         Operaciones operaciones = new Operaciones(matriz_A,matriz_B);
         this.Imprimir_Matriz_html(matriz_A,"matriz_A");
         this.Imprimir_Matriz_html(matriz_B,"matriz_B");
         this.Imprimir_Matriz_html(operaciones.Suma(),"resultado");
-        
     }
     
     

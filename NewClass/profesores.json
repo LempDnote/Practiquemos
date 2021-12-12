@@ -1,0 +1,37 @@
+[
+    {
+        "dpi":"201800926",
+        "nombre":"Miguel Alejandro",
+        "edad":"25",
+        "correo":"alejandro@gmail.com",
+        "password":"m123"
+    },
+    {
+        "dpi":"201800936",
+        "nombre":"Alejandro Ortiz",
+        "edad":"46",
+        "correo":"alejandro@gmail.com",
+        "password":"a123"
+    },
+    {
+        "dpi":"201800926",
+        "nombre":"Alejandra Jimenez",
+        "edad":"35",
+        "correo":"ale@gmail.com",
+        "password":"j123"
+    },
+    {
+        "dpi":"201800926",
+        "nombre":"Rocio Lima",
+        "edad":"25",
+        "correo":"Ro_@gmail.com",
+        "password":"r123"
+    },
+    {
+        "dpi":"201800926",
+        "nombre":"Izabel Lopez",
+        "edad":"50",
+        "correo":"iza@gmail.com",
+        "password":"i123"
+    }
+]

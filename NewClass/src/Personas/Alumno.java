@@ -21,12 +21,13 @@ public class Alumno {
         this.grado = grado;
     }
     
-    public void Ver_Info(){
-        System.out.println("nombre:"+this.nombre+"\n"
+    public String Ver_Informacion(){
+        String cadena = ("nombre:"+this.nombre+"\n"
                 + "carnet:"+this.carnet+"\n"
                 + "genero:"+this.genero+"\n"
                 + "edad:"+this.edad+"\n"
                 + "grado:"+this.grado);
+        return cadena;
     }
 
     public String getNombre() {

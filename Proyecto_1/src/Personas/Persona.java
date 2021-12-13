@@ -5,11 +5,13 @@
  */
 package Personas;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lgtjo
  */
-public class Persona {
+public class Persona implements Serializable {
     
     private String color_piel; //cadena
     private String color_ojos; //cadena

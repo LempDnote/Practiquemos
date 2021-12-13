@@ -21,12 +21,13 @@ public class Profesor {
         this.edad = edad;
     }
     
-    public void Ver_Informacion(){
-        System.out.println("nombre:"+this.nombre+"\n"
+    public String Ver_Informacion(){
+        String cadena = ("nombre:"+this.nombre+"\n"
                 + "correo:"+this.correo+"\n"
                 + "password:"+this.password+"\n"
                 + "dpi:"+this.dpi+"\n"
                 + "edad:"+this.edad);
+        return cadena;
     }
 
     public int getDpi() {

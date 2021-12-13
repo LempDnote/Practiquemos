@@ -41,13 +41,7 @@ public class Carga_Informacion {
         }
     }
     
-    public void Ver_Informacion_Alumnos(){
-        for (int i = 0; i < this.alumnos.length; i++) {
-            if(this.alumnos[i] != null){
-                this.alumnos[i].Ver_Info();
-            }
-        }
-    }
+   
     
 
     public Alumno[] getAlumnos() {

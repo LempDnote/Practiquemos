@@ -26,13 +26,15 @@ import org.jfree.data.general.DefaultPieDataset;
 public class Controlador {
     private Alumno alumnos [] = new Alumno[200] ;
     private Profesor profesor[] = new Profesor[10];
+    private Clase clase[] = new Clase[100];
     private Herramientas hr = new Herramientas();
     private Carga_Informacion ci;
     public Colegio colegio = new Colegio();
-    
+    public String usuario;
+    private int asignacion = 0;
     
     public Controlador(){
-        this.Cargar_Json_Profesor("profesores.json");
+        
     }
     
     public void recorrer(){
@@ -53,6 +55,7 @@ public class Controlador {
                 profesores += this.profesor[i].Ver_Informacion()+"\n";
             }
         }
+        System.out.println(profesores);
         return profesores;
     }
     
@@ -99,6 +102,8 @@ public class Controlador {
                 long edad = (long)ojs.get("edad");
                 int grado_ = (int)grado;
                 int edad_ = (int)edad;
+                double ede = (double)edad;
+                System.out.println(ede);
                 ci.Cargar_Alumnos(nombre,edad_, carnet,grado_, genero);
             }
             
@@ -113,8 +118,14 @@ public class Controlador {
         ci.Cargar_Alumnos(nombre, edad, carnet, grado, genero);
     }
     
-    public void Cargar_Profesores(){
-        
+    public void Cargar_Profesores(String nombre,String correo, String password,int dpi,int edad){
+        ci = new Carga_Informacion(this.profesor);
+        ci.Cargar_Profesor(nombre, correo, password, dpi, edad);
+    }
+    
+    public void Cargar_Clase(String seccion,int grado,String nombre_profesor,String nombre_alumnos,String asignacion,String informacion){
+        ci = new Carga_Informacion(this.clase);
+        ci.Cargar_Clase(seccion, grado, nombre_profesor, nombre_alumnos, asignacion,informacion);
     }
     
     public String[][] matriz_Alumnos(){
@@ -131,6 +142,41 @@ public class Controlador {
         return matriz;
     }
     
+    public String[][] matriz_Profesores(){
+        String [][] matriz = new String[this.profesor.length][5];
+        for (int i = 0; i < this.profesor.length; i++) {
+            if(this.profesor[i] != null){
+                matriz[i][0] = this.profesor[i].getNombre();
+                matriz[i][1] = Integer.toString(this.profesor[i].getDpi());
+                matriz[i][2] = this.profesor[i].getCorreo();
+                matriz[i][3] = this.profesor[i].getPassword();
+                matriz[i][4] = Integer.toString(this.profesor[i].getEdad());
+            }
+        }
+        
+        return matriz;
+    }
+    
+    public String[][] matriz_Clase(){
+        String matriz[][] = new String[this.clase.length][2];
+        for (int i = 0; i < this.clase.length; i++) {
+            if(this.clase[i] != null){
+                if(this.clase[i].getNombre_profesor().equals(this.usuario)){
+                    //leno la matriz de datos
+                    for (int j = 0; j < matriz.length; j++) {
+                        if(matriz[j][0] == null){
+                            matriz[j][0] = this.clase[i].getInformacion();
+                            matriz[j][1] = Integer.toString(this.clase[i].getNota());
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return matriz;
+    }
+    
     public JFreeChart Graficar_Alumnos(){
         return this.hr.GraficarPie(this.alumnos);
     }
@@ -139,13 +185,92 @@ public class Controlador {
         for (int i = 0; i < this.profesor.length; i++) {
             if(this.profesor[i] != null){
                 if(this.profesor[i].getCorreo().equals(usuario) && this.profesor[i].getPassword().equals(password)){
+                    this.usuario = usuario;
                     return true;
                 }
             }
         }
         return false;
     }
+    
+    public boolean Asignacion(int i){
+        this.Cargar_Clase(null,this.alumnos[i].getGrado(),this.usuario,this.alumnos[i].getNombre(),Integer.toString(this.asignacion++),this.alumnos[i].Ver_Informacion());
+        return true;
+    }
 
+    public String[] ver_clase(){
+        String estudiantes[] = new String[this.clase.length];
+        for (int i = 0; i < this.clase.length; i++) {
+            if(this.clase[i] != null){
+                if(this.clase[i].getNombre_profesor().equals(this.usuario)){
+                    //llenar vector de estudiantes
+                    for (int j = 0; j < estudiantes.length; j++) {
+                        if(estudiantes[j] == null){
+                            estudiantes[j] = this.clase[i].getNombre_alumnos();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return estudiantes;
+    }
+    
+    public boolean eliminar(int fila){
+        this.alumnos[fila] = null;
+        return true;
+    }
+    
+    public boolean eliminar_profesor(int fila){
+        this.profesor[fila] = null;
+        return true;
+    }
+    
+    public String clase_informacion(String Nombre){
+        for (int i = 0; i < this.clase.length; i++) {
+            if(this.clase[i].getNombre_alumnos().equals(Nombre)){
+                return this.clase[i].getInformacion();
+            }
+        }
+        return "";
+    }
+    
+    public void Insertar_Notas(int nota,String Nombre){
+        for (int i = 0; i < this.clase.length; i++) {
+            if(this.clase[i] != null){
+                if(this.clase[i].getNombre_alumnos().equals(Nombre)){
+                this.clase[i].setNota(nota);
+                break;
+            }
+            }
+            
+        }
+    }
+    
+    public boolean modificar(int i,String nombre,String carnet,String genero,int edad,int grado){
+        if(this.alumnos[i] != null){
+                this.alumnos[i].setNombre(nombre);
+                this.alumnos[i].setCarnet(carnet);
+                this.alumnos[i].setGenero(genero);
+                this.alumnos[i].setEdad(edad);
+                this.alumnos[i].setGrado(grado);
+                return true;
+            }
+        return false;
+    }
+    
+    public boolean modificar_profesor(int i,String nombre,String correo,String password,int dpi,int edad){
+        if(this.profesor[i] != null){
+            this.profesor[i].setNombre(nombre);
+            this.profesor[i].setCorreo(correo);
+            this.profesor[i].setPassword(password);
+            this.profesor[i].setEdad(edad);
+            this.profesor[i].setDpi(dpi);
+            return true;
+        }
+        return false;
+    }
+    
     public Alumno[] getAlumnos() {
         return alumnos;
     }
@@ -162,22 +287,7 @@ public class Controlador {
         this.profesor = profesor;
     }
     
-    public boolean eliminar(int fila){
-        this.alumnos[fila] = null;
-        return true;
-    }
     
-    public boolean modificar(int i,String nombre,String carnet,String genero,int edad,int grado){
-        if(this.alumnos[i] != null){
-                this.alumnos[i].setNombre(nombre);
-                this.alumnos[i].setCarnet(carnet);
-                this.alumnos[i].setGenero(genero);
-                this.alumnos[i].setEdad(edad);
-                this.alumnos[i].setGrado(grado);
-                return true;
-            }
-        return false;
-    }
     
     
 }

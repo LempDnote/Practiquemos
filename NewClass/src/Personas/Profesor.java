@@ -10,9 +10,8 @@ package Personas;
  * @author lgtjo
  */
 public class Profesor {
-    private int dpi,edad;
-    private String nombre,correo,password;
-    
+    private int dpi,edad,grado;
+
     public Profesor(String nombre,String correo,String password,int dpi,int edad){
         this.nombre = nombre;
         this.correo = correo;
@@ -69,6 +68,15 @@ public class Profesor {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public int getGrado() {
+        return grado;
+    }
+
+    public void setGrado(int grado) {
+        this.grado = grado;
+    }
+    private String nombre,correo,password;
     
     
     

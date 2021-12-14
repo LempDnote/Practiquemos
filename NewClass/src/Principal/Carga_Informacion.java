@@ -13,6 +13,7 @@ public class Carga_Informacion {
     
     private Alumno alumnos[];
     private Profesor profesores[];
+    private Clase clase[];
     
     public Carga_Informacion(Alumno[] alumnos){
         this.alumnos = alumnos;
@@ -21,6 +22,10 @@ public class Carga_Informacion {
     
     public Carga_Informacion(Profesor[] profesores){
         this.profesores = profesores;
+    }
+    
+    public Carga_Informacion(Clase[] clase){
+        this.clase = clase;
     }
     
     public void Cargar_Alumnos(String nombre,int edad,String carnet,int grado,String genero){
@@ -41,6 +46,15 @@ public class Carga_Informacion {
         }
     }
     
+    public void Cargar_Clase(String seccion,int grado,String nombre_profesor,String nombre_alumnos,String asignacion,String informacion){
+        for (int i = 0; i < this.clase.length; i++) {
+            if(this.clase[i]  == null){
+                this.clase[i] = new Clase(seccion,grado,nombre_profesor,nombre_alumnos, asignacion,informacion);
+                
+                break;
+            }
+        }
+    }
    
     
 

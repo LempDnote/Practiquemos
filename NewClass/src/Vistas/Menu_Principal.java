@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class Menu_Principal extends javax.swing.JFrame {
 
     Controlador controlador = new Controlador();
+   
 
     /**
      * Creates new form Menu_Principal
@@ -193,11 +194,13 @@ public class Menu_Principal extends javax.swing.JFrame {
         if (usuario.equals("admin") && password.equals("admin")) {
             JOptionPane.showMessageDialog(this, "Bienvenido director");
             Ventana_Administrador va = new Ventana_Administrador(this.controlador, this);
-
             va.setVisible(true);
             this.setVisible(false);
         } else if (this.controlador.Login(usuario, password)) {
             JOptionPane.showMessageDialog(this, "Bienvenido profesor");
+            Profesor_Principal pf = new Profesor_Principal(this,this.controlador);
+            pf.setVisible(true);
+            this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta");
         }

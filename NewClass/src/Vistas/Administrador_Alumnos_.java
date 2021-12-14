@@ -267,7 +267,7 @@ public class Administrador_Alumnos_ extends javax.swing.JFrame {
     private void JButton_CargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_CargaMasivaActionPerformed
         try{
             String url = this.JRuta.getText();
-        this.controlador.Cargar_Json_Alumnos(url);
+            this.controlador.Cargar_Json_Alumnos(url);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Complete todos los campos");
         }

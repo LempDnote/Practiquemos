@@ -99,6 +99,12 @@ public class Administrador_Configuracion extends javax.swing.JFrame {
             }
         });
 
+        JUrl_Imagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JUrl_ImagenActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("X");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,16 +132,16 @@ public class Administrador_Configuracion extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(JCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JButton_Slogan)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JButton_Ciclo))))
+                                    .addComponent(JButton_Ciclo))
+                                .addGap(10, 10, 10))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(51, 51, 51)
                                 .addComponent(jScrollPane1)))))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1))
@@ -173,7 +179,7 @@ public class Administrador_Configuracion extends javax.swing.JFrame {
     private void JButton_CicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_CicloActionPerformed
         String texto_ciclo = this.JCiclo.getText();
         this.controlador.colegio.setCiclo(texto_ciclo);
-        
+        this.controlador.serializarColegio();
     }//GEN-LAST:event_JButton_CicloActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -184,13 +190,19 @@ public class Administrador_Configuracion extends javax.swing.JFrame {
     private void JButton_SloganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_SloganActionPerformed
         String texto_slogan = this.JSlogan.getText();
         this.controlador.colegio.setSlogan(texto_slogan);
+        this.controlador.serializarColegio();
 
     }//GEN-LAST:event_JButton_SloganActionPerformed
 
     private void JButton_ImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_ImagenActionPerformed
         String ruta_imagen = this.JUrl_Imagen.getText();
         this.controlador.colegio.setRuta_imagen(ruta_imagen);
+        this.controlador.serializarColegio();
     }//GEN-LAST:event_JButton_ImagenActionPerformed
+
+    private void JUrl_ImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JUrl_ImagenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JUrl_ImagenActionPerformed
 
     /**
      * @param args the command line arguments

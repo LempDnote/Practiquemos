@@ -6,6 +6,9 @@
 package Vistas;
 
 import Principal.Controlador;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +34,7 @@ public class Administrador_Profesores extends javax.swing.JFrame {
         this.controlador = controlador;
         initComponents();
         this.setLocationRelativeTo(null);
+        this.Cargar_Tabla();
     }
     
     private void Cargar_Tabla(){
@@ -274,6 +278,7 @@ public class Administrador_Profesores extends javax.swing.JFrame {
         try{
             String ruta = this.JRuta.getText();
             this.controlador.Cargar_Json_Profesor(ruta);
+            this.controlador.serializarProfesores();
             this.Cargar_Tabla();
         }catch(Exception e){
             
@@ -290,7 +295,16 @@ public class Administrador_Profesores extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
+        try {
+            this.controlador.Exportar_profesores();
+            String url = "C:\\Users\\lgtjo\\OneDrive\\Desktop\\Vacaciones 2021\\Tutoriales\\NewClass\\profesores.pdf";
+            ProcessBuilder proceso = new ProcessBuilder();
+            proceso.command("cmd.exe","/c",url);
+            proceso.start();
+        } catch (IOException ex) {
+            Logger.getLogger(Administrador_Alumnos_.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -335,6 +349,8 @@ public class Administrador_Profesores extends javax.swing.JFrame {
             String correo = this.JCorreo.getText();
             this.controlador.Cargar_Profesores(nombre, correo, password,Integer.parseInt(Dpi),Integer.parseInt(edad));
             this.controlador.info_profesor();
+            this.controlador.serializarProfesores();
+            
             this.Cargar_Tabla();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Llene los campos");

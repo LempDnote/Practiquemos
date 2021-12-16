@@ -5,11 +5,13 @@
  */
 package Personas;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lgtjo
  */
-public class Colegio {
+public class Colegio implements Serializable{
     private String ruta_imagen,slogan,ciclo;
 
     public Colegio() {

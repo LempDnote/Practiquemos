@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Menu_Principal extends javax.swing.JFrame {
 
-    Controlador controlador = new Controlador();
+    Controlador controlador = new Controlador();//Esto es una instancia..tambien se conoce como inicar o inicializacion
    
 
     /**
@@ -23,7 +23,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     public Menu_Principal() {
         initComponents();
         this.modificar_inicio();
-
+        this.modificar_datos_inicio();
     }
 
     private void modificar_inicio() {

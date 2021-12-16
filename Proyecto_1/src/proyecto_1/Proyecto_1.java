@@ -32,6 +32,29 @@ public class Proyecto_1 {
      */
     public static void main(String[] args) throws Exception {
         
+        String vector_carros[] = {
+            "Mazda",
+            "Toyota",
+            "Honda",
+            "Toyota",
+            "BM",
+            "GMC",
+            "Honda",
+            "Mazda",
+            "Toyota",
+            "Honda",
+            "Toyota",
+            "BM",
+            "GMC",
+            "Honda",
+            "Porche"
+        };
+        // esta cadena contiene solo una ves cada marca de carro separada por coma
+        String marcas_generales = "";
+        
+        
+        
+        /*
         Persona[] persona;
         Proyecto_1 py = new Proyecto_1();
         py.abrir_();
@@ -39,7 +62,7 @@ public class Proyecto_1 {
         for (int i = 0; i < persona.length; i++) {
             persona[i].Ver_Persona();
         }
-        
+        */
         /*
         Persona vector_personas[] = new Persona[50];
         
@@ -62,7 +85,7 @@ public class Proyecto_1 {
         */
         
     }
-    
+    /*
     private void abrir()throws IOException{
         file = new FileOutputStream("persona.ser");
         output = new ObjectOutputStream(file);
@@ -111,6 +134,18 @@ public class Proyecto_1 {
             }
         }
         return persona;
+    }
+    
+    */
+    public static boolean Reccorer_Marcas(String marcas_generales,String marca){
+        // me permite iterar sobre la cadena de marcas_generales
+        String[] marcas_unicas = marcas_generales.split(",");
+        for (int i = 0; i < marcas_unicas.length; i++) {
+            if(marcas_unicas[i].equals(marca)){
+                return true;
+            }
+        }
+        return false;
     }
     
     

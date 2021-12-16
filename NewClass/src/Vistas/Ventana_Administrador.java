@@ -14,21 +14,22 @@ import javax.swing.JFrame;
  */
 public class Ventana_Administrador extends javax.swing.JFrame {
 
-    private Controlador controlador;
+    private Controlador controlador;//declarando no hace una instancia
     public JFrame ventana;
     
     /**
      * Creates new form Ventana_Administrador
      */
-    public Ventana_Administrador() {
+    public Ventana_Administrador() {//primer constructor sirve para hacer pruebas de vista
         initComponents();
         this.modificar_inicio();
     }
     
-    public Ventana_Administrador(Controlador controlador,JFrame Ventana){
-        this.controlador = controlador;
-        this.ventana = Ventana;
+    public Ventana_Administrador(Controlador controlador,JFrame Ventana){//comunicacion con su ventana raiz
+        this.controlador = controlador;//creo una instancia osea ya se que controlador voy a usar
+        this.ventana = Ventana;// ya se que ventana voy a usar
         initComponents();
+        
         this.modificar_inicio();
         Ventana.setVisible(false);
     }

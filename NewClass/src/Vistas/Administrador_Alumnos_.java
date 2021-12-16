@@ -45,6 +45,9 @@ public class Administrador_Alumnos_ extends javax.swing.JFrame {
         this.ventana = ventana;
         initComponents();
         this.setLocationRelativeTo(null);
+        String [][] matriz = this.controlador.matriz_Alumnos();
+        DefaultTableModel modelo = new DefaultTableModel(matriz,this.nombre);
+        this.jTable1.setModel(modelo);
     }
 
     /**
@@ -268,6 +271,7 @@ public class Administrador_Alumnos_ extends javax.swing.JFrame {
         try{
             String url = this.JRuta.getText();
             this.controlador.Cargar_Json_Alumnos(url);
+            this.controlador.serializarAlumnos();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Complete todos los campos");
         }
@@ -286,6 +290,7 @@ public class Administrador_Alumnos_ extends javax.swing.JFrame {
             int grado = Integer.parseInt(this.JGrado.getText());
             String genero = String.valueOf(this.jComboBox1.getSelectedItem());
             this.controlador.Cargar_Alumnos(nombre, carnet, genero, edad, grado);
+            this.controlador.serializarAlumnos();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Complete todos los campos");
         }
@@ -321,9 +326,11 @@ public class Administrador_Alumnos_ extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            FileWriter file = new FileWriter("lista.doc");
-            file.write(this.controlador.info_alumnos());
-            file.close();
+            this.controlador.Exportar_alumnos();
+            String url = "C:\\Users\\lgtjo\\OneDrive\\Desktop\\Vacaciones 2021\\Tutoriales\\NewClass\\alumnos.pdf";
+            ProcessBuilder proceso = new ProcessBuilder();
+            proceso.command("cmd.exe","/c",url);
+            proceso.start();
         } catch (IOException ex) {
             Logger.getLogger(Administrador_Alumnos_.class.getName()).log(Level.SEVERE, null, ex);
         }

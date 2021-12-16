@@ -7,6 +7,8 @@ package Principal;
 import Personas.*;
 import Principal.Carga_Informacion;
 import Principal.Herramientas;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -34,6 +36,7 @@ public class Controlador {
     private int asignacion = 0;
     
     public Controlador(){
+        this.__init__();
         
     }
     
@@ -195,9 +198,10 @@ public class Controlador {
     
     public boolean Asignacion(int i){
         this.Cargar_Clase(null,this.alumnos[i].getGrado(),this.usuario,this.alumnos[i].getNombre(),Integer.toString(this.asignacion++),this.alumnos[i].Ver_Informacion());
+        
         return true;
     }
-
+//funcion retorna metodo no retorna
     public String[] ver_clase(){
         String estudiantes[] = new String[this.clase.length];
         for (int i = 0; i < this.clase.length; i++) {
@@ -213,6 +217,13 @@ public class Controlador {
                 }
             }
         }
+        /*Ejemplo
+        String clientes[] = new String[this.alumnos.length];
+        for (int i = 0; i < this.alumnos.length; i++) {
+            if(this.alumnos[i] != null){
+                clientes[i] = this.alumnos[i].getNombre();
+            }
+        }*/
         return estudiantes;
     }
     
@@ -271,6 +282,10 @@ public class Controlador {
         return false;
     }
     
+    public JFreeChart Barras_Profesores(){
+        return this.hr.GraficaBarras(this.clase,this.profesor);
+    }
+    
     public Alumno[] getAlumnos() {
         return alumnos;
     }
@@ -290,4 +305,90 @@ public class Controlador {
     
     
     
+    
+    
+    //serializando
+    public void serializarAlumnos(){
+        //primero creamos el archivo a serealizar
+        this.hr.escritura_abrir("alumnos.ser");
+        //despues escribirmos el archivo
+        this.hr.escritura_escribir(this.alumnos);
+        //despues cerramos el archivo
+        this.hr.escritura_cerrar();
+    }
+    
+    public void serializarProfesores(){
+        this.hr.escritura_abrir("profesores.ser");
+        this.hr.escritura_escribir(this.profesor);
+        this.hr.escritura_cerrar();
+    }
+    
+    public void serializarClase(){
+        this.hr.escritura_abrir("clase.ser");
+        this.hr.escritura_escribir(this.clase);
+        this.hr.escritura_cerrar();
+    }
+    
+    public void serializarColegio(){
+        this.hr.escritura_abrir_("colegio.animal");
+        this.hr.escritura_escribir_colegio(this.colegio);
+        this.hr.escritura_cerrar_();
+    }
+ 
+    //deserealizar
+    
+    public void deserializacion_alumnos(){
+        
+          this.hr.lectura_abrir("alumnos.ser");
+          this.alumnos = (Alumno[])this.hr.lectura_leer();
+          this.hr.lectura_cerrar();  
+        
+    }
+    
+    public void deserializacion_profesores(){
+        
+          this.hr.lectura_abrir("profesores.ser");
+          this.profesor = (Profesor[])this.hr.lectura_leer();
+          this.hr.lectura_cerrar();  
+        
+    }
+    
+    public void deserializacion_clase(){
+          this.hr.lectura_abrir("clase.ser");
+          this.clase = (Clase[])this.hr.lectura_leer();
+          this.hr.lectura_cerrar();  
+    }
+    
+    public void deserealizacion_colegio(){
+        this.hr.Lectura_abrir("colegio.animal");
+        this.colegio = (Colegio)this.hr.Lectura_leer();
+        this.hr.Lectura_cerrar();
+    }
+    
+    public void __init__(){
+        File alumnos = new File("alumnos.ser");
+        File profesores = new File("profesores.ser");
+        File clase = new File("clase.ser");
+        File colegio = new File("colegio.animal");
+        if(alumnos.exists()){
+            this.deserializacion_alumnos();
+        }
+        if(profesores.exists()){
+            this.deserializacion_profesores();
+        }
+        if(clase.exists()){
+            this.deserializacion_clase();
+        }
+        if(colegio.exists()){
+            this.deserealizacion_colegio();
+        }
+    }
+    
+    public void Exportar_alumnos(){
+        this.hr.Exportar_Pdf(this.alumnos);
+    }
+    
+    public void Exportar_profesores(){
+        this.hr.Exportar_Pdf(this.profesor);
+    }
 }

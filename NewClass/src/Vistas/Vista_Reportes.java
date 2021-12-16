@@ -6,7 +6,10 @@
 package Vistas;
 
 import Principal.Controlador;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 
 /**
  *
@@ -105,6 +108,13 @@ public class Vista_Reportes extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.Cargar_Tabla();
+        JFreeChart barras = this.controlador.Barras_Profesores();
+        ChartPanel panel = new ChartPanel(barras);
+        JFrame ventana = new JFrame();
+        ventana.getContentPane().add(panel);
+        ventana.pack();
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

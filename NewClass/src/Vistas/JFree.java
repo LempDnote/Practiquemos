@@ -10,6 +10,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.*;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import Principal.Controlador;
 import javax.swing.JFrame;
 /**
@@ -25,9 +26,6 @@ public class JFree extends javax.swing.JFrame {
     public JFree() {
         initComponents();
     }
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

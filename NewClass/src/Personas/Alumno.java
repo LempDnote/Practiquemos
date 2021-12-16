@@ -5,11 +5,15 @@
  */
 package Personas;
 
+import java.io.Serializable;
+
+
+
 /**
  *
  * @author lgtjo
  */
-public class Alumno {
+public class Alumno implements Serializable {
     private String nombre,carnet,genero;
     private int edad,grado;
 
